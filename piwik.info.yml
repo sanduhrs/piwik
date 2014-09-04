@@ -1,0 +1,9 @@
+name: "Piwik Web Analytics"
+description: Adds Piwik javascript tracking code to all your site's pages.
+core: 8.x
+type: module
+package: Statistics
+configure: piwik.configure
+
+test_dependencies:
+  - token
