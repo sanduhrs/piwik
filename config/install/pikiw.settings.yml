@@ -1,0 +1,31 @@
+cache: true
+codesnippet_before: ''
+codesnippet_after: ''
+custom: false
+custom_var: {}
+domain_mode: false
+js_scope: header
+last_cache:
+page_title_hierarchy: false
+page_title_hierarchy_exclude_home: true
+pages:
+  - admin
+  - admin/*
+  - batch
+  - node
+  - node/add/*
+  - node/*/*
+  - user/*/*
+privacy_donottrack:
+roles: {}
+site_id:
+site_search: false
+trackmailto: true
+track: true
+trackfiles_extensions: 7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip
+trackmessages: {}
+translation_set: false
+url_http: ''
+url_https: ''
+visibility_pages: false
+visibility_roles: false
