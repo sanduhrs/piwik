@@ -5,21 +5,6 @@
  * Installation file for Piwik - Web analytics module.
  */
 
-function piwik_install() {
-  // Remove tracking from all administrative pages, see http://drupal.org/node/34970.
-  variable_set('piwik_visibility_roles', 0);
-  variable_set('piwik_visibility_pages', 0);
-  $pages = array(
-    'admin',
-    'admin/*',
-    'batch',
-    'node/add*',
-    'node/*/*',
-    'user/*/*',
-  );
-  variable_set('piwik_pages', implode("\n", $pages));
-}
-
 function piwik_uninstall() {
   \Drupal::state()->delete('last_cache');
   \Drupal::state()->delete('cache');
@@ -37,27 +22,28 @@ function piwik_disable() {
  */
 function piwik_requirements($phase) {
   $requirements = array();
-  $t = get_t();
 
   switch ($phase) {
     case 'runtime' :
+      break;
       // Module cannot validate piwik URL without external HTTP requests.
-      if (variable_get('drupal_http_request_fails', TRUE) && !system_check_http_request()) {
+      // @FIXME
+      if (FALSE && variable_get('drupal_http_request_fails', TRUE) && !system_check_http_request()) {
         $requirements['http requests'] = array(
-          'title' => $t('HTTP request status'),
-          'value' => $t('Fails'),
+          'title' => t('HTTP request status'),
+          'value' => t('Fails'),
           'severity' => REQUIREMENT_ERROR,
-          'description' => $t('Your system or network configuration does not allow Drupal to access web pages, resulting in reduced functionality. This could be due to your webserver configuration or PHP settings, and should be resolved in order to download information about available updates, fetch aggregator feeds, sign in via OpenID, or use other network-dependent services.'),
+          'description' => t('Your system or network configuration does not allow Drupal to access web pages, resulting in reduced functionality. This could be due to your webserver configuration or PHP settings, and should be resolved in order to download information about available updates, fetch aggregator feeds, sign in via OpenID, or use other network-dependent services.'),
         );
       }
 
       // Raise warning if Piwik user account has not been set yet.
-      if (!preg_match('/^\d{1,}$/', variable_get('piwik_site_id', ''))) {
+      if (!preg_match('/^\d{1,}$/', \Drupal::config('piwik.settings')->get('site_id', ''))) {
         $requirements['piwik'] = array(
-          'title' => $t('Piwik module'),
-          'description' => $t('Piwik module has not been configured yet. Please configure its settings from the <a href="@url">Piwik settings page</a>.', array('@url' => url('admin/config/system/piwik'))),
+          'title' => t('Piwik module'),
+          'description' => t('Piwik module has not been configured yet. Please configure its settings from the <a href="@url">Piwik settings page</a>.', array('@url' => url('admin/config/system/piwik'))),
           'severity' => REQUIREMENT_WARNING,
-          'value' => $t('Not configured'),
+          'value' => t('Not configured'),
         );
       }
       break;
