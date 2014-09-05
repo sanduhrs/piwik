@@ -21,34 +21,8 @@ function piwik_install() {
 }
 
 function piwik_uninstall() {
-  variable_del('piwik_cache');
-  variable_del('piwik_codesnippet_before');
-  variable_del('piwik_codesnippet_after');
-  variable_del('piwik_custom');
-  variable_del('piwik_custom_var');
-  variable_del('piwik_domain_mode');
-  variable_del('piwik_js_scope');
-  variable_del('piwik_last_cache');
-  variable_del('piwik_page_title_hierarchy');
-  variable_del('piwik_page_title_hierarchy_exclude_home');
-  variable_del('piwik_pages');
-  variable_del('piwik_privacy_donottrack');
-  variable_del('piwik_roles');
-  variable_del('piwik_site_id');
-  variable_del('piwik_site_search');
-  variable_del('piwik_trackmailto');
-  variable_del('piwik_track'); // interrims solution
-  variable_del('piwik_trackfiles_extensions');
-  variable_del('piwik_trackmessages');
-  variable_del('piwik_translation_set');
-  variable_del('piwik_url_http');
-  variable_del('piwik_url_https');
-  variable_del('piwik_visibility_pages');
-  variable_del('piwik_visibility_roles');
-
-  // Remove backup variables if exits. Remove this code in D8.
-  variable_del('piwik_codesnippet_before_backup_7202');
-  variable_del('piwik_codesnippet_after_backup_7202');
+  \Drupal::state()->delete('last_cache');
+  \Drupal::state()->delete('cache');
 }
 
 /**
