@@ -248,7 +248,7 @@ class PiwikSettings extends ConfigFormBase {
     );
 
     $site_search_dependencies = '<div class="admin-requirements">';
-    $site_search_dependencies .= t('Requires: !module-list', array('!module-list' => (module_exists('search') ? t('@module (<span class="admin-enabled">enabled</span>)', array('@module' => 'Search')) : t('@module (<span class="admin-disabled">disabled</span>)', array('@module' => 'Search')))));
+    $site_search_dependencies .= t('Requires: !module-list', array('!module-list' => (\Drupal::moduleHandler()->moduleExists('search') ? t('@module (<span class="admin-enabled">enabled</span>)', array('@module' => 'Search')) : t('@module (<span class="admin-disabled">disabled</span>)', array('@module' => 'Search')))));
     $site_search_dependencies .= '</div>';
 
     $form['tracking']['search']['site_search'] = array(
